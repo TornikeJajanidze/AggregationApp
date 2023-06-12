@@ -3,7 +3,6 @@ using AggregationApp.Application.Database;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-a
 namespace AggregationApp.Api.Controllers
 {
     [ApiController]
