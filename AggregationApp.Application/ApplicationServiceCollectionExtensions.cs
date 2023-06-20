@@ -13,9 +13,13 @@ namespace AggregationApp.Application
     {
         public static IServiceCollection AddApplicationDbContext(this IServiceCollection services, string connectionString)
         {
-            services.AddDbContext<AggregationDbContext>(options =>
-                options.UseNpgsql(connectionString /*b => b.MigrationsAssembly("AggregationApp.Application")*/));
+            AddDbContext(services, connectionString);
             return services;
+        }
+        public static void AddDbContext(IServiceCollection services, string connectionString)
+        {
+            services.AddDbContext<AggregationDbContext>(options =>
+             options.UseNpgsql(connectionString));
         }
     }
 }

@@ -4,6 +4,6 @@ namespace AggregationApp.Api.Services.ElectricityDataService
 {
     public interface IElectricityDataService
     {
-        Task ProcessElectricityData();
+        Task ProcessElectricityDataAsync();
     }
 }

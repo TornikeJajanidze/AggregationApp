@@ -11,7 +11,7 @@
         public static class ElectricityData
         {
             private const string Base = $"{ApiBase}/ElectricityData";
-            public const string Post = $"{Base}";
+            public const string Post = Base;
         }
     }
 }

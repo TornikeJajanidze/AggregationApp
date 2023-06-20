@@ -1,0 +1,20 @@
+﻿version: '3.4'
+
+services:
+  aggregationapp.api:
+    build:
+      context: .
+      dockerfile: AggregationApp.Api/Dockerfile
+    ports:
+      - "8000:80"
+
+  db:
+    hostname: aggregation_db 
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=AggregationDB

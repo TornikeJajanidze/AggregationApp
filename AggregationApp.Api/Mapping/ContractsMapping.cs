@@ -13,8 +13,8 @@ namespace AggregationApp.Api.Mapping
                 var AggregatedAppResponse = new AggregationAppResponse()
                 {
                     Region = item.Region,
-                    SumPPlus = (double)item.PPlus,
-                    SumPMinus = (double)item.PMinus,
+                    SumPPlus = item.PPlus,
+                    SumPMinus = item.PMinus,
                 };
                 response.Add(AggregatedAppResponse);
             }

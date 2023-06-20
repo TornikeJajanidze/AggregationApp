@@ -14,8 +14,8 @@ namespace AggregationApp.Api.Controllers
         [HttpPost(ApiEndpoints.ElectricityData.Post)]
         public async Task<IActionResult> ProcessData()
         {
-            await _electricityDataService.ProcessElectricityData();
-            return Ok("done");
+            await _electricityDataService.ProcessElectricityDataAsync();
+            return Ok();
         }
     }
 }

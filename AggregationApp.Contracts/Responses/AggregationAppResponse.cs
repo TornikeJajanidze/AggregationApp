@@ -8,8 +8,8 @@ namespace AggregationApp.Contracts.Responses
 {
     public class AggregationAppResponse
     {
-        public string Region { get; set; }
-        public double SumPPlus { get; set; }
-        public double SumPMinus { get; set; }
+        public string? Region { get; set; }
+        public decimal? SumPPlus { get; set; }
+        public decimal? SumPMinus { get; set; }
     }
 }

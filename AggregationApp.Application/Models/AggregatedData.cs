@@ -8,7 +8,7 @@ namespace AggregationApp.Application.Models
 {
     public class AggregatedData
     {
-        public string Region { get; set; }
+        public string? Region { get; set; }
         public decimal? PPlus { get; set; }
         public decimal? PMinus { get; set; }
     }

@@ -23,20 +23,20 @@ namespace AggregationApp.Api.Services.ElectricityDataService
             _httpClient = httpClient;
             _dbcontext = dbcontext;
         }
-        public async Task ProcessElectricityData()
+        public async Task ProcessElectricityDataAsync()
         {
             await ClearAllRecordsAsync();
-            var data = await DownloadElectricityData();
+            var data = await DownloadElectricityDataAsync();
             var filteredData = FilterApartmentData(data);
             var aggregatedData = AggregateDataByRegion(filteredData);
-            await SaveAggregatedData(aggregatedData);
+            await SaveAggregatedDataAsync(aggregatedData);
         }
-        private async Task SaveAggregatedData(List<AggregatedData> aggregatedData)
+        private async Task SaveAggregatedDataAsync(List<AggregatedData> aggregatedData)
         {
             await _dbcontext.AggregatedData.AddRangeAsync(aggregatedData);
             await _dbcontext.SaveChangesAsync();
         }
-        private async Task<List<ElectricityData>> DownloadElectricityData()
+        private async Task<List<ElectricityData>> DownloadElectricityDataAsync()
         {
             var data = new List<ElectricityData>();
      
@@ -48,7 +48,7 @@ namespace AggregationApp.Api.Services.ElectricityDataService
             }
             return data;
         }
-        private List<ElectricityData> ParseCsvData(Stream streamData)
+        private static List<ElectricityData> ParseCsvData(Stream streamData)
         {
             using (var reader = new StreamReader(streamData))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
@@ -58,11 +58,11 @@ namespace AggregationApp.Api.Services.ElectricityDataService
                 return records;
             }
         }
-        private List<ElectricityData> FilterApartmentData(List<ElectricityData> data)
+        private static List<ElectricityData> FilterApartmentData(List<ElectricityData> data)
         {
             return data.Where(d => d.ObjectName == "Butas").ToList();
         }
-        private List<AggregatedData> AggregateDataByRegion(List<ElectricityData> data)
+        private static List<AggregatedData> AggregateDataByRegion(List<ElectricityData> data)
         {
             var aggregatedData = data.GroupBy(d => d.Region)
                                      .Select(g => new AggregatedData
